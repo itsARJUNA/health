@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --color-accent: #0B3D2E;
+  --color-accent-text: #4eca8b;
+
+  /* Dark theme (default) */
+  --color-bg: #0a0a0a;
+  --color-bg-secondary: #141414;
+  --color-text: #e8e8e8;
+  --color-text-secondary: #999999;
+  --color-text-muted: #666666;
+  --color-border: #222222;
+  --color-card: #141414;
+  --color-card-hover: #0f2a1f;
+  --color-tag-bg: #1a1a1a;
+  --color-tag-border: #2a2a2a;
+
+  /* Chart colors */
+  --color-recovery-green: #4eca8b;
+  --color-recovery-yellow: #f59e0b;
+  --color-recovery-red: #ef4444;
+  --color-strain-blue: #3b82f6;
+  --color-hrv-green: #10b981;
+  --color-rhr-rose: #f43f5e;
+  --color-sleep-purple: #a855f7;
+  --color-sleep-deep: #6366f1;
+  --color-sleep-light: #60a5fa;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] body,
+body {
+  background: #0a0a0a;
+  color: #e8e8e8;
+}
+
+[data-theme="light"] body {
+  background: #fdfff4;
+  color: #1a1a1a;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Dark theme variables on elements */
+[data-theme="dark"] .card,
+.card {
+  background: #141414;
+  border-color: #222222;
+}
+
+[data-theme="dark"] .card:hover,
+.card:hover {
+  background: #0f2a1f;
+}
+
+[data-theme="light"] .card {
+  background: #ffffff;
+  border-color: #e0e0e0;
+}
+
+[data-theme="light"] .card:hover {
+  background: #f0f5e8;
+}
+
+/* Tooltip overrides */
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 3px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #d0d0d0;
+}
+
+/* Sidebar nav buttons */
+.nav-btn {
+  color: #999999;
+  font-weight: 400;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-btn:hover {
+  color: #e8e8e8;
+  background: #0f2a1f;
+  border-color: #4eca8b40;
+  transform: scale(1.03) translateX(2px);
+  box-shadow: 0 4px 12px rgba(78, 202, 139, 0.08);
+}
+
+.nav-btn-active {
+  color: #4eca8b;
+  font-weight: 500;
+  background: #0f2a1f;
+  border-color: #4eca8b50;
+  box-shadow: 0 2px 8px rgba(78, 202, 139, 0.1);
+}
+
+.nav-btn-active:hover {
+  transform: none;
+  box-shadow: 0 2px 8px rgba(78, 202, 139, 0.1);
+}
+
+/* Timescale buttons */
+.time-btn {
+  color: #666666;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.time-btn:hover {
+  color: #e8e8e8;
+  background: #0f2a1f;
+  border-color: #4eca8b40;
+  transform: scale(1.08);
+  box-shadow: 0 3px 10px rgba(78, 202, 139, 0.1);
+}
+
+.time-btn-active {
+  color: #4eca8b;
+  background: #0B3D2E;
+  border-color: #4eca8b50;
+  box-shadow: 0 2px 8px rgba(78, 202, 139, 0.12);
+}
+
+.time-btn-active:hover {
+  transform: none;
+}
+
+/* Card hover lift */
+.card-hover {
+  transition: all 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(78, 202, 139, 0.06);
+  border-color: #4eca8b30 !important;
+}
+
+/* Tab content transition */
+.tab-content {
+  animation: tabFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Heatmap tooltip */
+.heatmap-tooltip {
+  position: absolute;
+  pointer-events: none;
+  z-index: 50;
+  background: #141414;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+  transform: translate(-50%, -100%);
+  margin-top: -8px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.heatmap-tooltip.visible {
+  opacity: 1;
+}
